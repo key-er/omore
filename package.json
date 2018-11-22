@@ -1,0 +1,28 @@
+{
+  "name": "omore",
+  "version": "1.0.0",
+  "description": "chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/key-er/omore.git"
+  },
+  "keywords": [
+    "socketio",
+    "chat"
+  ],
+  "author": "key-er",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/key-er/omore/issues"
+  },
+  "homepage": "https://github.com/key-er/omore#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7",
+    "socket.io": "^2.1.1"
+  }
+}
