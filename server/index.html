@@ -5,6 +5,23 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" type="text/css" href="/index.css">
 
+    <!-- icon in the highest resolution we need it for -->
+    <link rel="icon" sizes="192x192" href="icon.png">
+
+    <!-- reuse same icon for Safari -->
+    <link rel="apple-touch-icon" href="ios-icon.png">
+
+    <!-- multiple icons for IE -->
+    <meta name="msapplication-square310x310logo" content="icon_largetile.png">
+
+    <!-- To specify the theme color for Chrome on Android, use the meta theme color. -->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4285f4">
+
+    <!-- Change the status bar appearances -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
   </head>
   <body>
     <ul id="messages"></ul>
@@ -38,6 +55,18 @@
             $('#messages').append($('<li>').text(msg))
           });
         })
+
+
+
+
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+          // Prevent Chrome 67 and earlier from automatically showing the prompt
+          e.preventDefault();
+          // Stash the event so it can be triggered later.
+          deferredPrompt = e;
+        });
       </script>
 
 
