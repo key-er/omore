@@ -3,7 +3,20 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var path = require('path')
+var db = require('./database/dbutils.js')
+var request = require('request')
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+
+function fetchChatHistory(n) {
+  // n is the number of items to fetch
+  db.readChat({}, 3).then(() => {
+
+  })
+}
 
 var port = process.env.PORT || 80;
 
@@ -16,6 +29,14 @@ server.listen(port);
 app.get('/', function (req, res) {
   res.sendFile('/index.html');
 });
+
+
+app.get('/chats', function(req, res) {
+  db.readChat({}).then((chats) => {
+    res.send(chats)
+  })
+})
+
 
 // client side renndering
 // app.use('/', express.static(path.join(__dirname, '../client')));
@@ -30,6 +51,9 @@ io.on('connection', function (socket) {
 
  // first listen for a 'chat msg' and then send to everyone including sender
  socket.on('chat msg', (msg) => {
+  // save msg to db
+  var text = new db.ChatMsg({ msg: msg});
+  db.saveChat(text)
   io.emit('chat msg', msg);
  });
 });
