@@ -1,5 +1,10 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/omore');
+if (process.env.MONGOLAB_AQUA_URI) {
+  mongoose.connect(MONGOLAB_AQUA_URI)
+}
+else {
+  mongoose.connect('mongodb://localhost/omore');
+}
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
