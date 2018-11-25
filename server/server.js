@@ -56,5 +56,14 @@ io.on('connection', function (socket) {
   db.saveChat(text)
   io.emit('chat msg', msg);
  });
+
+
+ /// add default user as Anonynmous
+socket.username = 'Anonynmous';
+socket.on('change_usernname', (data) => {
+  console.log(data)
+  socket.username = data.username
+})
+
 });
 
