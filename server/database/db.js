@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 if (process.env.MONGOLAB_AQUA_URI) {
-  mongoose.connect(MONGOLAB_AQUA_URI)
+  mongoose.connect(process.env.MONGOLAB_AQUA_URI)
 }
 else {
   mongoose.connect('mongodb://localhost/omore');
