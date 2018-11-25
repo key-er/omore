@@ -2,6 +2,7 @@ var cacheName = 'shell-contentv7';
 var filesToCache = [
   '/index.html',
   '/index.css',
+  '/images/',
   '/'
 ];
 
