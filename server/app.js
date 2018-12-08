@@ -25,7 +25,13 @@ if ('serviceWorker' in navigator) {
   })
 };
 
+
+
+
 var socket = io.connect('http://localhost');
+var userid = "Anonymous";
+
+
 $(() => {
   var socket = io();
   $('form').submit(() => {
@@ -34,7 +40,15 @@ $(() => {
     $('#m').val(''); // clear out input box after submitting text
     return false;
   })
+
+  $('#userSubmitBtn').click(() => {
+     userid = $('#whoami').val() || "Anonymous"
+    console.log($('#whoami').val())
+    $('#whoami').val('')
+  })
+
+
   socket.on('chat msg', function (msg) {
-    $('#messages').append($('<li>').text(msg))
+    $('#messages').append($('<li>').text(userid + ":" + msg))
   });
 })
